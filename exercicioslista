@@ -1,0 +1,385 @@
+1 Exercício 
+
+1 - Erros comuns em C
+Nos exercícios abaixo, todos os códigos demonstrados terão alguns erros que podem ser corrigidos
+conforma a análise. Para isso, observem com atenção e elaborem o script adequado que poderia
+realmente funcionar de uma maneira mais adequada.
+!!RESPOSTAS IGNORANDO OS ERROS DE ESPAÇO!!!
+A)
+ # include < stdio .h >
+ int main () {
+ int n = 4000000000;
+printf ( " % d \ n " , n );
+ return 0;
+ }
+RESPOSTA:
+O erro está no “int” ent vamos usar o “long long int”, que tem 64 bits, para armazenar números maiores que o limite de 32 bits do “int”.
+CÓDIGO CORRETO:
+# include <stdio.h>
+int main() 
+{
+    long long int n = 4000000000;
+    printf("%lld\n", n);
+    return 0;
+}
+B)
+ # include < stdio .h >
+ int main () {
+ printf ( " % d \ n " , a );
+ int a ;
+ return 0;
+ }
+RESPOSTA:
+A variável “a” está sendo usada antes de ser declarada. As variáveis precisam ser declaradas antes de serem usadas.
+CÓDIGO CORRETO:
+
+# include <stdio.h>
+int main() 
+{
+    int a;
+    a = 0;  // ou qualquer valor que você queira atribuir
+    printf("%d\n", a);
+    return 0;
+}
+C)
+ # include < stdio .h >
+ int main () {
+ printf ( " % d " , 4);
+ printf ( " % d " , 2);
+ return 0;
+ }
+RESPOSTA:
+Tem um pequeno erro de sintaxe no #include
+CÓDIGO CORRETO:
+#include <stdio.h>
+int main() 
+{
+    printf("%d\n", 4);
+    printf("%d\n", 2);
+    return 0;
+}
+
+D)
+ # include < stdio .h >
+ int main () {
+ int a ;
+ scanf ( " % d " , a );
+ printf ( " % d " , a );
+ return 0;
+ }
+RESPOSTA:
+O “scanf” deve ser o endereço da variável onde o valor será armazenado. Portanto, você deve usar &a em vez de a.
+CÓDIGO CORRETO:
+# include <stdio.h>
+int main() 
+{
+    int a;
+    a = 0;  
+    printf("%d\n", a);
+    return 0;
+}
+2 Exercício
+ 2 - Variáveis | Tipos de dados | E/S
+
+A) Escreva um programa que leia três números e os imprima na ordem inversa da que foram digitados
+#include <stdio.h>
+
+int main() {
+    int a, b, c;
+
+    printf("Digite o primeiro número: ");
+    scanf("%d", &a);
+    
+    printf("Digite o segundo número: ");
+    scanf("%d", &b);
+
+    printf("Digite o terceiro número: ");
+    scanf("%d", &c);
+
+    printf("Os números na ordem inversa são: %d %d %d\n", c, b, a);
+
+    return 0;
+}
+B) Escreva um programa para simular uma pequena conversa do computador com o usuário. O programa deve seguir os passos:
+1. inicialmente escreve "Olá eu sou o Nº 1, como é seu nome?";
+2. em seguida espera que o usuário digite seu nome;
+3. por fim escreve: "Bem-vindo ao clube (nome)".
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    char nome[12];
+    
+    printf("Olá eu sou o Nº 1, como é seu nome?\n");
+ 
+    scanf("%11[^\n]%*[^\n]", nome);
+    printf("Bem-vindo ao clube %s",nome);
+    
+    return 0;
+}
+
+C) Escreva um programa que pergunte o nome e a idade de um indivíduo e imprima (aproximadamente) quantos dias de vida ele possui.
+#include <stdio.h>
+
+int main()
+{
+    char nome[12];
+    int idade;
+    int dias = 365;
+    int diasvida;
+   
+    
+    printf("digite seu nome!");
+    scanf("%11[^\n]%*[^\n]", nome);
+
+    printf("digite sua idade!\n");
+    scanf("%d", &idade);
+    
+    diasvida = idade * dias;
+    
+     printf("olá %c! Você tem aproximadamente %.0d dias de vida.\n", nome, diasvida);
+
+    return 0;
+}
+D) Escreva um programa que pergunte qual o raio de um círculo e imprima a sua área.
+#include <stdio.h>
+
+int main()
+{
+    float raio;
+    float area;
+    float pi=3.14;
+    printf("digite o raio do ciurculo:");
+    scanf("%f",&raio);
+    area=pi*(raio*raio);
+    printf("a area do  ciurculo e: %.2f",area);
+    return 0;
+}
+
+E) Faça um programa que calcule a quantidade necessária de latas de tinta para pintar uma parede.
+O programa pergunta a medidas de largura e altura da parede em metros e imprime o resultado (em latas de tinta). Considere que o consumo de tinta é de 300 ml por metro quadrado e a quantidade de
+tinta por lata é de 2 litros
+#include <stdio.h>
+
+int main() {
+    float largura, altura;
+    float area;
+    float consumoPorMetroQuadrado = 300; // em ml
+    float litrosPorLata = 2; // em litros
+    float mlPorLata = litrosPorLata * 1000; // conversão de litros para ml
+    int latas;
+
+    printf("Digite a largura da parede em metros: ");
+    scanf("%f", &largura);
+
+    printf("Digite a altura da parede em metros: ");
+    scanf("%f", &altura);
+
+    area = largura * altura;
+    float totalMlNecessario = area * consumoPorMetroQuadrado;
+    latas = (int)((totalMlNecessario + mlPorLata - 1) / mlPorLata); // arredondamento para cima
+
+    printf("Você precisará de %d latas de tinta.\n", latas);
+
+    return 0;
+}
+
+F) Escreva um programa que leia uma temperatura em graus Farenheit e a imprima em graus Centí-
+grados. A conversão de graus Farenheit para Centígrados é obtida por C=(5/9)(F-32) 
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    float temp;
+    float tempc;
+    printf("digite a temperatura:");
+    scanf("%f",&temp);
+    tempc = (5.0 / 9.0) * (temp - 32);
+    printf("a temperatura convertida e:%f",tempc);
+    return 0;
+}
+G)Escreva um programa que pergunte os seguintes dados referentes ao pneu de um automóvel:
+• P = pressão;
+• V = volume;
+• T = temperatura;
+e calcule a massa de ar desse pneu segundo a fórmula (M = massa de ar): PV = 0.37M(T+460)
+#include <stdio.h>
+int main() 
+{
+ float P, V, T, M;
+printf("Digite a pressão (P): ");
+scanf("%f", &P);
+printf("Digite o volume (V): ");
+scanf("%f", &V);
+printf("Digite a temperatura (T): ");
+scanf("%f", &T);
+    M = (P * V) / (0.37 * (T + 460));
+    printf("A massa de ar (M) é: %.2f\n", M);
+
+    return 0;
+}
+
+H)Faça um programa que leia o primeiro termo de uma Progressão Aritmética (PA), sua razão, um
+número N e, a seguir, calcule e mostre o N-ésimo termo da PA.
+#include <stdio.h>
+
+int main() {
+int primeiro_termo, razao, N, enesimo_termo;
+printf("Digite o primeiro termo da PA: ");
+scanf("%d", &primeiro_termo);
+printf("Digite a razão da PA: ");
+scanf("%d", &razao);
+printf("Digite o valor de N (o enésimo termo desejado): ");
+ scanf("%d", &N);
+enesimo_termo = primeiro_termo + (N - 1) * razao;
+  printf("O %d-ésimo termo da PA é: %d\n", N, enesimo_termo);
+ return 0;
+}
+
+I)Faça um programa que leia os coeficientes de uma equação de segundo grau e calcule suas raízes.
+#include <iostream>
+#include <cmath>
+
+int main() {
+float A, B, C;
+std::cout << "Digite o valor de A: ";
+std::cin >> A;
+std::cout << "Digite o valor de B: ";
+std::cin >> B;
+std::cout << "Digite o valor de C: ";
+std::cin >> C;
+double delta = B * B - 4 * A * C;
+if (delta > 0) {
+double x1 = (-B + std::sqrt(delta)) / (2 * A);
+double x2 = (-B - std::sqrt(delta)) / (2 * A);
+std::cout << "as raizes da equação são x1 = " << x1 << " e x2 = " << x2 << std::endl;
+  } else if (delta == 0) {
+ double x = -B / (2 * A);
+std::cout << "existe apenas uma raiz real: x = " << x << std::endl;
+  } else if (delta < 0) {
+std::cout << "as raizes reais não existem" << std::endl;
+}
+  return 0;
+}
+
+
+J)Escreva um programa para contar dinheiro que pergunte, dentro de um monte de dinheiro, qual a quantidade de notas de:
+• 1 real;
+• 10 reais;
+• 50 reais;
+• 100 reais;
+em seguida o programa imprime qual o valor total em dinheiro.
+
+
+#include <stdio.h>
+
+int main() {
+int notas_1, notas_10, notas_50, notas_100;
+int total;
+printf("Digite a quantidade de notas de 1 real: ");
+scanf("%d", &notas_1);
+printf("Digite a quantidade de notas de 10 reais: ");
+scanf("%d", &notas_10);
+printf("Digite a quantidade de notas de 50 reais: ");
+scanf("%d", &notas_50);
+printf("Digite a quantidade de notas de 100 reais: ");
+scanf("%d", &notas_100);
+total = (notas_1 * 1) + (notas_10 * 10) + (notas_50 * 50) + (notas_100 * 100);
+printf("O valor total em dinheiro é: %d reais\n", total);
+
+return 0;
+}
+
+L)Escreva um programa que faça o inverso da questão anterior, ou seja, solicite ao usuário um valor (total) em dinheiro, e informe quantas notas de: 1 real, 5 reais, 10 reais, 50 reais e 100 reais serão necessárias para compor este valor, de forma que seja utilizado o menor número de notas possível.
+#include <stdio.h>
+
+int main() 
+{
+    int total, nota100, nota50, nota10, nota5, nota1;
+
+    printf("Digite o valor total em reais: ");
+    scanf("%d", &total);
+
+    nota100 = total / 100;
+    total %= 100;
+
+   
+    nota50 = total / 50;
+    total %= 50;
+
+    nota10 = total / 10;
+    total %= 10;
+
+    nota5 = total / 5;
+    total %= 5;
+   
+    nota1 = total;
+
+    printf("Notas de 100 reais: %d\n", nota100);
+    printf("Notas de 50 reais: %d\n", nota50);
+    printf("Notas de 10 reais: %d\n", nota10);
+    printf("Notas de 5 reais: %d\n", nota5);
+    printf("Notas de 1 real: %d\n", nota1);
+
+    return 0;
+}
+
+
+
+3)
+Desafio:
+
+A)
+Imagine que você está começando a investir na bolsa de valores e dessa forma você começa a verificar as melhores ações que tenham seus fundamentos adequados. Você pretende começar a investir e separa
+um dinheiro igual a R$ 1.000,00 reais. No seu cálculo, você pretende aportar o seu dinheiro na ação 1, ação 2 e ação 3. Veja atentamente as condições a seguir:
+• Ação 1 - o preço médio desta ação está R$24,13/unidade;
+• Ação 2 - o preço médio desta ação está R$11,00/unidade; 
+• Ação 3 - o preço médio desta ação está R$38,65/unidade;
+• Ação 1 - te pagou R$ 17,00 reais de dividendos no ano por unidade;
+• Ação 2 - te pagou R$ 35,00 reais de dividendos no ano por unidade; e
+• Ação 3 - te pagou R$ 25,00 reais de dividendos no ano por unidade;
+
+
+B)
+Desenvolva um script em C que calcule o Dividend Yield (D.Y) de cada ação listada acima,
+conforme a quantidade adquirida. Insira a quantidade que deseja comprar de ações com o valor que
+pretende aportar, isto é, os R$ 1.000,00 reais. Leve em consideração que para o cálculo do DY, a
+equação:
+                   Valordodividendoporaçao/preomediodaaçao *100
+
+#include <stdio.h>
+
+int main() {
+
+    float preco_acao1 = 24.13;
+    float preco_acao2 = 11.00;
+    float preco_acao3 = 38.65;
+    
+    float dividendo_acao1 = 17.00;
+    float dividendo_acao2 = 35.00;
+    float dividendo_acao3 = 25.00;
+    
+    float total_aporte = 1000.00;
+    comprar com R$ 1.000,00 para cada ação
+    int qtd_acao1 = total_aporte / (3 * preco_acao1);
+    int qtd_acao2 = total_aporte / (3 * preco_acao2);
+    int qtd_acao3 = total_aporte / (3 * preco_acao3);
+
+    float dy_acao1 = (dividendo_acao1 / preco_acao1) * 100;
+    float dy_acao2 = (dividendo_acao2 / preco_acao2) * 100;
+    float dy_acao3 = (dividendo_acao3 / preco_acao3) * 100;
+    
+    printf("Você pode comprar:\n");
+    printf("Ação 1: %d unidades\n", qtd_acao1);
+    printf("Ação 2: %d unidades\n", qtd_acao2);
+    printf("Ação 3: %d unidades\n", qtd_acao3);
+    
+    printf("\nO Dividend Yield (D.Y.) de cada ação é:\n");
+    printf("Ação 1: %.2f%%\n", dy_acao1);
+    printf("Ação 2: %.2f%%\n", dy_acao2);
+    printf("Ação 3: %.2f%%\n", dy_acao3);
+
+    return 0;
+}
