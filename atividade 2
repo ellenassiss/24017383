@@ -1,0 +1,476 @@
+1 Exercícios - while e Do-while
+
+Exercício 1: Controle de Temperatura Um laboratório de pesquisa monitora constantemente a tem-
+peratura de um ambiente controlado. O sistema precisa verificar a temperatura a cada segundo e
+ajustar a ventilação para manter a temperatura em um intervalo seguro entre 20°C e 25°C. Quando
+a temperatura está fora desse intervalo, o sistema exibe um alerta e continua monitorando até que a
+temperatura retorne à faixa aceitável.
+Escreva um programa em C que simule o monitoramento da temperatura e mostre alertas sempre que
+o valor estiver fora da faixa de 20°C a 25°C. O valor da temperatura pode ser fornecido pelo usuário.
+
+#include <stdio.h>
+
+int main() {
+    float temperatura;
+
+    do {
+        printf("Insira a temperatura atual (em °C): ");
+        scanf("%f", &temperatura);
+
+        if (temperatura < 20.0 || temperatura > 25.0) {
+            printf("ALERTA: Temperatura fora do intervalo seguro (20°C - 25°C)!\n");
+        } else {
+            printf("Temperatura estável.\n");
+        }
+    } while (temperatura < 20.0 || temperatura > 25.0);
+
+    printf("A temperatura voltou ao intervalo seguro.\n");
+    return 0;
+}
+
+
+Exercício 2: Controle de Combustível em um Carro
+Imagine que você está desenvolvendo um sistema para monitorar o nível de combustível de um carro
+elétrico. O sistema verifica o nível de combustível (em percentual) e avisa o motorista quando o tanque
+está abaixo de 15%, pedindo que o veículo seja recarregado. O sistema deve continuar monitorando
+até que o nível de combustível seja de 100
+Escreva um programa em C que receba o nível de combustível do usuário e continue alertando o
+motorista se o nível estiver abaixo de 15%.
+
+#include <stdio.h>
+
+int main() {
+    int combustivel;
+
+    do {
+        printf("Insira o nível de combustível atual (em %%): ");
+        scanf("%d", &combustivel);
+
+        if (combustivel < 15) {
+            printf("ALERTA: Combustível abaixo de 15%%! Recarregue o veículo.\n");
+        } else if (combustivel < 100) {
+            printf("Combustível OK, mas ainda não está cheio.\n");
+        }
+    } while (combustivel < 100);
+
+    printf("O tanque está cheio (100%%).\n");
+    return 0;
+}
+
+
+Exercício 3: Contagem de Passos para Meta Diária
+Um aplicativo de saúde monitora os passos que uma pessoa dá ao longo do dia. A meta diária é de
+10.000 passos. A cada atualização, o aplicativo pede o número de passos dados e soma ao total do
+dia. O programa deve exibir a quantidade total de passos até o momento e informar quando a meta
+de 10.000 passos for alcançada.
+Escreva um programa em C que solicite ao usuário a quantidade de passos em intervalos e
+mostre o progresso até atingir ou ultrapassar a meta diária.
+
+#include <stdio.h>
+
+int main() {
+    int passos, totalPassos = 0, meta = 10000;
+
+    do {
+        printf("Quantos passos você deu? ");
+        scanf("%d", &passos);
+
+        totalPassos += passos;
+        printf("Progresso atual: %d passos de %d.\n", totalPassos, meta);
+
+        if (totalPassos < meta) {
+            printf("Continue caminhando!\n");
+        }
+    } while (totalPassos < meta);
+
+    printf("Parabéns! Você alcançou a meta de 10.000 passos!\n");
+    return 0;
+}
+
+
+Exercício 4: Verificação de Depósito Mínimo Um sistema bancário solicita ao usuário um valor mínimo
+de depósito de R$ 500,00 para abrir uma conta. O sistema deve pedir ao usuário para inserir o valor
+do depósito inicial e verificar se atende ao mínimo. Caso o valor seja inferior a R$ 500,00, o programa
+deve informar o erro e solicitar um novo valor até que o depósito seja válido.
+Escreva um programa em C que simule este processo de validação
+
+#include <stdio.h>
+
+int main() {
+    float deposito;
+
+    do {
+        printf("Insira o valor do depósito inicial (mínimo de R$ 500,00): ");
+        scanf("%f", &deposito);
+
+        if (deposito < 500.0) {
+            printf("ERRO: O valor do depósito é inferior a R$ 500,00. Tente novamente.\n");
+        }
+    } while (deposito < 500.0);
+
+    printf("Depósito válido! Conta criada com sucesso.\n");
+    return 0;
+}
+
+2 Exercicios - Do while
+
+Exercício 1: Controle de Movimento de um Robô Um robô está programado para se mover em um
+espaço de 10x10 metros. O usuário deve inserir comandos para mover o robô para frente, para trás,
+para a esquerda ou para a direita. O programa deve continuar aceitando comandos até que o usuário
+digite ’sair’.
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char comando[10];
+
+    do {
+        printf("Digite um comando (frente, tras, esquerda, direita ou sair): ");
+        scanf("%s", comando);
+
+        if (strcmp(comando, "frente") == 0) {
+            printf("Robô movido para frente.\n");
+        } else if (strcmp(comando, "tras") == 0) {
+            printf("Robô movido para trás.\n");
+        } else if (strcmp(comando, "esquerda") == 0) {
+            printf("Robô movido para a esquerda.\n");
+        } else if (strcmp(comando, "direita") == 0) {
+            printf("Robô movido para a direita.\n");
+        } else if (strcmp(comando, "sair") != 0) {
+            printf("Comando inválido!\n");
+        }
+    } while (strcmp(comando, "sair") != 0);
+
+    printf("Programa encerrado.\n");
+    return 0;
+}
+
+
+Exercício 2: Leitura de Sensores de Distância Um robô está equipado com um sensor de distância. O
+usuário pode iniciar a leitura do sensor, que deve ser feita repetidamente até que uma distância menor
+que 10 cm seja registrada. O programa deve mostrar a distância medida e encerrar quando o usuário
+decidir parar.
+
+#include <stdio.h>
+
+int main() {
+    float distancia;
+    char continuar;
+
+    do {
+        printf("Digite a distância medida pelo sensor (em cm): ");
+        scanf("%f", &distancia);
+
+        if (distancia < 10.0) {
+            printf("Distância menor que 10 cm detectada. Finalizando leitura.\n");
+            break;
+        }
+
+        printf("Deseja continuar? (s/n): ");
+        scanf(" %c", &continuar);
+    } while (continuar == 's');
+
+    printf("Leitura encerrada.\n");
+    return 0;
+}
+
+
+Exercício 3: Controle de Atuação do Robô O robô pode ser programado para realizar diferentes
+ações, como ligar uma lâmpada, tocar um som ou mover um braço. O usuário deve selecionar uma
+ação repetidamente até que decida encerrar o programa.
+
+#include <stdio.h>
+
+int main() {
+    int opcao;
+
+    do {
+        printf("\nSelecione uma ação:\n");
+        printf("1 - Ligar lâmpada\n");
+        printf("2 - Tocar som\n");
+        printf("3 - Mover braço\n");
+        printf("4 - Encerrar\n");
+        printf("Opção: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                printf("Lâmpada ligada.\n");
+                break;
+            case 2:
+                printf("Som tocado.\n");
+                break;
+            case 3:
+                printf("Braço movido.\n");
+                break;
+            case 4:
+                printf("Encerrando programa.\n");
+                break;
+            default:
+                printf("Opção inválida. Tente novamente.\n");
+        }
+    } while (opcao != 4);
+
+    return 0;
+}
+
+
+Exercício 4: Monitoramento de Bateria do Robô O robô possui um sistema de monitoramento de
+bateria que avisa o usuário quando a bateria está baixa. O programa deve verificar o nível da bateria
+e avisar o usuário até que a bateria esteja acima de 20%.
+
+#include <stdio.h>
+
+int main() {
+    int bateria;
+
+    do {
+        printf("Digite o nível da bateria (em %%): ");
+        scanf("%d", &bateria);
+
+        if (bateria < 20) {
+            printf("ALERTA: Bateria baixa! Recarregue o robô.\n");
+        } else {
+            printf("Bateria está OK.\n");
+        }
+    } while (bateria < 20);
+
+    printf("Bateria recarregada. Monitoramento encerrado.\n");
+    return 0;
+}
+
+
+Exercício 5: Simulação de Navegação Autônoma Um robô autônomo pode se mover em um grid de
+5x5, e o usuário pode inserir comandos para mover o robô para cima, baixo, esquerda ou direita. 
+o robô deve parar quando tentar sair do grid ou quando o usuário optar por parar.
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int x = 0, y = 0; // Posição inicial do robô
+    char comando[10];
+
+    do {
+        printf("Digite o comando (cima, baixo, esquerda, direita ou parar): ");
+        scanf("%s", comando);
+
+        if (strcmp(comando, "cima") == 0 && y < 4) {
+            y++;
+            printf("Robô movido para cima. Posição atual: (%d, %d).\n", x, y);
+        } else if (strcmp(comando, "baixo") == 0 && y > 0) {
+            y--;
+            printf("Robô movido para baixo. Posição atual: (%d, %d).\n", x, y);
+        } else if (strcmp(comando, "esquerda") == 0 && x > 0) {
+            x--;
+            printf("Robô movido para a esquerda. Posição atual: (%d, %d).\n", x, y);
+        } else if (strcmp(comando, "direita") == 0 && x < 4) {
+            x++;
+            printf("Robô movido para a direita. Posição atual: (%d, %d).\n", x, y);
+        } else if (strcmp(comando, "parar") != 0) {
+            printf("Comando inválido ou fora do grid!\n");
+        }
+    } while (strcmp(comando, "parar") != 0);
+
+    printf("Navegação encerrada.\n");
+    return 0;
+}
+
+ Exercícios práticos usando Arduino e conceitos de estrutura de re-
+petição
+1) "cameraData"é um vetor de inteiros com capacidade para armazenar 10 valores utilizando Arduino,
+como deve ser declarado?
+
+int cameraData[10];
+
+
+
+2) Qual é a função do código cameraData[3] = analogRead(A1); em um programa Arduino que utiliza
+um vetor?
+
+Esse código:
+
+Lê o valor analógico do pino A1 utilizando a função analogRead(). Esse valor varia de 0 a 1023.
+Armazena o valor lido na quarta posição (índice 3) do vetor cameraData. Lembre-se que os índices começam em 0 no C/C++.
+
+
+3) Explique como realizar a inicialização de um vetor de floats chamado "temperaturas"com os valores
+25.5, 26.0, 24.8, 27.3 e 26.5.
+
+Para inicializar um vetor de floats chamado temperaturas com os valores 25.5, 26.0, 24.8, 27.3 e 26.5, utilizamos:
+float temperaturas[5] = {25.5, 26.0, 24.8, 27.3, 26.5};
+
+
+4) Explique a função do código abaixo e qual seria a possível resposta do mesmo.
+
+
+for (int i = 0; i < 4; i++) {
+    Serial.println(ledPins[i]);
+}
+Explicação:
+
+O loop for percorre os elementos de um vetor ledPins (assumindo que ele já foi declarado).
+Para cada iteração, a função Serial.println() imprime o valor do elemento atual do vetor no monitor serial.
+O índice i varia de 0 a 3 (inclusive), então o loop acessa as primeiras 4 posições do vetor.
+Saída possível: Se o vetor ledPins contiver, por exemplo:
+int ledPins[4] = {2, 3, 4, 5};
+A saída no monitor serial será:
+2
+3
+4
+5
+
+
+5) Com base no código da questão 4, complete a estrutura necessária para que o mesmo seja executado
+na IDE do Arduino.
+
+Para executar o código da questão 4 na IDE do Arduino, precisamos completar com a função setup() e, se necessário, um vetor de exemplo:
+int ledPins[4] = {2, 3, 4, 5}; // Vetor de exemplo
+
+void setup() {
+    Serial.begin(9600); // Inicializa a comunicação serial
+    for (int i = 0; i < 4; i++) {
+        Serial.println(ledPins[i]);
+    }
+}
+
+void loop() {
+    // O loop pode ficar vazio neste caso
+}
+
+
+6) Como utilizar a função random() para atribuir valores aleatórios a cada elemento de um vetor
+"randomValues"de tamanho 5?
+
+int randomValues[5];
+
+void setup() {
+    Serial.begin(9600);
+    randomSeed(analogRead(0)); // Inicializa o gerador de números aleatórios
+    for (int i = 0; i < 5; i++) {
+        randomValues[i] = random(0, 100); // Gera valores entre 0 e 99
+        Serial.println(randomValues[i]);
+    }
+}
+
+void loop() {
+    // O loop pode ficar vazio
+}
+
+
+
+7) Descreva a implementação do código a seguir:
+
+for (int i = 0; i < tamanhoVetor; i++) {
+    if (sensorReadings[i] == 150) {
+        break;
+    }
+}
+
+Descrição:
+
+O código percorre um vetor sensorReadings com tamanhoVetor elementos.
+Durante a iteração, se algum elemento do vetor for igual a 150, o comando break encerra o loop imediatamente.
+Isso é útil para parar de verificar o vetor assim que uma condição específica for encontrada.
+
+
+8) Descreva a função da instrução sizeof(sensorData) / sizeof(sensorData[0]) ao determinar o
+tamanho de um vetor "sensorData"em um programa Arduino.
+
+Essa instrução calcula o número total de elementos no vetor sensorData.
+
+Como funciona:
+
+sizeof(sensorData) retorna o tamanho total do vetor em bytes.
+sizeof(sensorData[0]) retorna o tamanho de um único elemento do vetor em bytes.
+Dividindo os dois, obtemos o número total de elementos no vetor.
+Exemplo: Se sensorData for declarado como:
+int sensorData[8];
+E cada int ocupar 2 bytes, temos:
+sizeof(sensorData) = 16 bytes.
+sizeof(sensorData[0]) = 2 bytes.
+Resultado: 16 / 2 = 8 elementos.
+
+
+4 Problemas
+Em um projeto de monitoramento ambiental, um dispositivo Arduino foi configurado para coletar
+dados de sensores que medem três variáveis ambientais em diferentes locais ao longo do tempo. As
+variáveis monitoradas são: temperatura (em graus Celsius), umidade do solo (em percentagem), e
+concentração de CO2 (em partes por milhão - ppm).
+A matriz ambientData foi criada para armazenar esses dados, onde cada linha representa um
+local de monitoramento e cada coluna representa uma leitura em um determinado momento. A seguir,
+encontra-se a matriz representativa:
+1 int ambientData [3][5] = {
+2 {22 , 25 , 23 , 21 , 24} ,
+3 {45 , 38 , 42 , 40 , 37} ,
+4 {400 , 380 , 420 , 410 , 390}
+5 };
+Perguntas:
+a. Como você interpreta os dados contidos na primeira linha da matriz ambientData em relação
+à temperatura?
+
+A primeira linha da matriz contém os valores:
+22, 25, 23, 21, 24.
+
+Interpretação: Esses valores representam as temperaturas (em graus Celsius) registradas em cinco momentos diferentes para o primeiro local de monitoramento.
+
+
+b. Qual é a média da umidade do solo nos cinco momentos registrados no segundo local de
+monitoramento?
+
+Os valores da segunda linha (umidade do solo) são:
+45, 38, 42, 40, 37.
+
+Cálculo da média
+media=soma dos valores/numero de leituras
+ai temos  45+38+42+40+37/5 = 40,4%
+​
+ 
+c. Determine o momento em que a concentração de CO2 atingiu seu valor máximo no terceiro
+local de monitoramento.
+
+Os valores da terceira linha (concentração de CO2) são:
+400, 380, 420, 410, 390.
+
+Passo a passo:
+
+O valor máximo é 420.
+Esse valor ocorre no 3º momento (índice 2), considerando que os índices começam em 0.
+
+d. Crie um trecho de código Arduino que utilize a matriz ambientData para calcular e imprimir
+a média de temperatura em todos os locais monitorados.
+Parte do código da pergunta "d"está implementado logo a seguir.
+int ambientData[3][5] = {
+    {22, 25, 23, 21, 24},
+    {45, 38, 42, 40, 37},
+    {400, 380, 420, 410, 390}
+};
+
+int totalLocais = 3;
+int totalLeituras = 5;
+int somaTemperaturas = 0;
+
+void setup() {
+    Serial.begin(9600);
+    for (int i = 0; i < totalLocais; i++) {
+        for (int j = 0; j < totalLeituras; j++) {
+            somaTemperaturas += ambientData[i][j];
+        }
+    }
+    float mediaTemperatura = (float)somaTemperaturas / (totalLocais * totalLeituras);
+    Serial.print("Média de temperatura: ");
+    Serial.println(mediaTemperatura);
+}
+
+void loop() {
+    // Não é necessário repetir a operação no loop
+}
+
+
+
+
+
+
+
+
